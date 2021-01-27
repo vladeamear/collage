@@ -1,4 +1,4 @@
-var prev = [[150,150,1,0.998,-0.066,'11.png']];
+var prev = [];
 
 function roundabit(n){
     return Math.round(n*1000)/1000;
@@ -29,6 +29,18 @@ function SaveNAdd(){
         if(k !== prev[i].length){ k = 0; }
     }
     if (k == 0){ old = prev.push(old); }
+}
+
+function ClearAll(){
+    prev = [];
+    addpics();
+}
+
+function Undo(){
+    if (prev.length > 0){
+        prev = prev.slice(0,prev.length-1);
+        addpics();
+    }
 }
 
 function addoncanvas(posx,posy,size,cos,sin,src,ctx){
