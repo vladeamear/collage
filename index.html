@@ -6,7 +6,7 @@
         <script src="script.js"></script>
         <title>Canvas</title>
     </head>
-    <body>
+    <body onload="addpics();">
         <canvas id='canvas' width="600" height="600">Обновите браузер</canvas>
         <br>
         <input type="range" id="angle" min="-4.71" max="1.568" step="0.001" oninput="addpics();">
@@ -21,5 +21,7 @@
         <input type="radio" name="picture" value="12.png" onclick="addpics();">
         <input type="button" onclick="ClearAll();" value="clearall">
         <input type="button" onclick="Undo();" value="undo">
+        <input type="radio" name="background" value="bg1.png" onclick="addpics();" checked>
+        <input type="radio" name="background" value="bg2.png" onclick="addpics();">
     </body>
 </html>

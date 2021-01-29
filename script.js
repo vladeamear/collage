@@ -37,11 +37,22 @@ function ClearAll(){
 }
 
 function Undo(){
-    if (prev.length > 0){
+    if (prev.length > 1){
         prev = prev.slice(0,prev.length-1);
         addpics();
     }
 }
+
+// function ChooseBackground(){
+//     var 
+//         bgs = document.getElementsByName("backgrounds"),
+//         src = '',
+//         bg = [];
+//     for (var i = 0; i < bgs.length; i++){
+//         if (bgs[i].checked){ src = bgs[i].value; }
+//     }
+//     bg = [[0, 0, 1,1,0, src,]]
+// }
 
 function addoncanvas(posx,posy,size,cos,sin,src,ctx){
     var img = new Image();
@@ -63,14 +74,20 @@ function addpics(){
         sin     = roundabit(Math.sin(angle)),
         src     = '',
         pics    = document.getElementsByName("picture"),
+        bgs     = document.getElementsByName("background"),
+        bg      = '',
         canvas  = document.getElementById("canvas"),
         ctx     = canvas.getContext("2d");
     
     for (var i = 0; i < pics.length; i++){
         if (pics[i].checked){ src = pics[i].value; }
     }
+    for (var i = 0; i < bgs.length; i++){
+        if (bgs[i].checked){ bg = bgs[i].value; }
+    }
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    addoncanvas(0,0,1,1,0,bg,ctx);   
 
     for (i = 0; i < prev.length; i++){
         addoncanvas(prev[i][0],prev[i][1],prev[i][2],prev[i][3],prev[i][4],prev[i][5],ctx);
@@ -78,5 +95,5 @@ function addpics(){
 
     addoncanvas(posx,posy,size,cos,sin,src,ctx);   
 
-    document.getElementById("helper").value = prev.length;
+    document.getElementById("helper").value = sin;
 }
